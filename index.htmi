@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard ระบบจัดการข้อมูลตารางอัปเกรด</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-600 text-white p-2 rounded-xl shadow-md shadow-emerald-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-900 tracking-tight">DataVerse</h1>
+                    <p class="text-xs text-slate-500">ระบบบันทึกและวิเคราะห์ข้อมูลตาราง</p>
+                </div>
+            </div>
+            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200">อัปเดตล่าสุด: 2026</span>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow space-y-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500">รายการทั้งหมด</p>
+                    <h3 id="statTotalItems" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                </div>
+                <div class="bg-blue-50 text-blue-600 p-3 rounded-xl text-xl">📊</div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500">มูลค่ารวมเงิน (บาท)</p>
+                    <h3 id="statTotalAmount" class="text-3xl font-bold text-emerald-600 mt-1">0.00</h3>
+                </div>
+                <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xl">💰</div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500">รายการรอตรวจสอบ</p>
+                    <h3 id="statPendingItems" class="text-3xl font-bold text-amber-600 mt-1">0</h3>
+                </div>
+                <div class="bg-amber-50 text-amber-600 p-3 rounded-xl text-xl">⏳</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 lg:sticky lg:top-24">
+                <h2 class="text-base font-bold text-slate-900 mb-4 flex items-center border-b border-slate-100 pb-3">
+                    <span class="mr-2">📥</span> กรอกข้อมูลเข้าตาราง
+                </h2>
+                
+                <form id="dataForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">ชื่อรายการ / ข้อมูล</label>
+                        <input type="text" id="itemName" required placeholder="เช่น ซื้อลิขสิทธิ์ซอฟต์แวร์, ไอแพดเพื่อการศึกษา" 
+                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">หมวดหมู่</label>
+                        <select id="itemCategory" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm bg-white">
+                            <option value="ครุภัณฑ์/อุปกรณ์">ครุภัณฑ์/อุปกรณ์</option>
+                            <option value="ค่าใช้จ่ายสำนักงาน">ค่าใช้จ่ายสำนักงาน</option>
+                            <option value="งานบริการ/ซอฟต์แวร์">งานบริการ/ซอฟต์แวร์</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">จำนวนเงิน (บาท)</label>
+                        <input type="number" id="itemPrice" required min="0" step="0.01" placeholder="0.00" 
+                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">สถานะตรวจสอบ</label>
+                        <div class="grid grid-cols-2 gap-3 mt-1">
+                            <label class="flex items-center justify-center border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-slate-50 transition text-sm font-medium text-slate-700">
+                                <input type="radio" name="itemStatus" value="อนุมัติแล้ว" checked class="text-emerald-600 focus:ring-emerald-500 h-4 w-4 mr-2">
+                                อนุมัติแล้ว
+                            </label>
+                            <label class="flex items-center justify-center border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-slate-50 transition text-sm font-medium text-slate-700">
+                                <input type="radio" name="itemStatus" value="รอตรวจสอบ" class="text-amber-600 focus:ring-amber-500 h-4 w-4 mr-2">
+                                รอตรวจสอบ
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-xl transition duration-200 shadow-sm flex justify-center items-center text-sm mt-2">
+                        ➕ บันทึกข้อมูลเข้าตาราง
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-2 space-y-4">
+                
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-3 justify-between items-center">
+                    <div class="relative w-full sm:w-72">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-sm">🔍</span>
+                        <input type="text" id="searchBar" oninput="renderTable()" placeholder="พิมพ์ค้นหาชื่อรายการ..." 
+                            class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition">
+                    </div>
+                    <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                        <span class="text-xs font-semibold text-slate-500 whitespace-nowrap">ตัวกรอง:</span>
+                        <select id="filterCategory" onchange="renderTable()" class="px-3 py-2 border border-slate-300 rounded-xl text-sm outline-none bg-white text-slate-700 focus:border-emerald-500 min-w-[140px]">
+                            <option value="ทั้งหมด">ทั้งหมดทุกหมวด</option>
+                            <option value="ครุภัณฑ์/อุปกรณ์">ครุภัณฑ์/อุปกรณ์</option>
+                            <option value="ค่าใช้จ่ายสำนักงาน">ค่าใช้จ่ายสำนักงาน</option>
+                            <option value="งานบริการ/ซอฟต์แวร์">งานบริการ/ซอฟต์แวร์</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs font-semibold uppercase tracking-wider border-b border-slate-200/60">
+                                    <th class="py-3.5 px-5 text-center">ลำดับ</th>
+                                    <th class="py-3.5 px-5">วันที่บันทึก</th>
+                                    <th class="py-3.5 px-5">ชื่อรายการ</th>
+                                    <th class="py-3.5 px-5">หมวดหมู่</th>
+                                    <th class="py-3.5 px-5 text-right">จำนวนเงิน</th>
+                                    <th class="py-3.5 px-5 text-center">สถานะ</th>
+                                    <th class="py-3.5 px-5 text-center">จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-700">
+                                </tbody>
+                        </table>
+                    </div>
+
+                    <div id="noDataMessage" class="py-16 text-center text-slate-400 hidden">
+                        <span class="text-4xl block mb-2">📥</span>
+                        <p class="text-sm font-medium">ไม่พบข้อมูลที่ตรงกับเงื่อนไขการค้นหา</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+        <p>© 2026 DataVerse Pro Table Storage. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // โหลดข้อมูลเก่าจากฐานข้อมูลเบราว์เซอร์ (Local Storage)
+        let dataList = JSON.parse(localStorage.getItem('advancedTableData')) || [];
+
+        const dataForm = document.getElementById('dataForm');
+        const tableBody = document.getElementById('tableBody');
+        const noDataMessage = document.getElementById('noDataMessage');
+
+        // ฟังก์ชันคำนวณสรุปสถิติด้านบน (คำนวณจากข้อมูลทั้งหมดเสมอเพื่อสะท้อนภาพรวม)
+        function updateDashboardStats() {
+            document.getElementById('statTotalItems').innerText = dataList.length;
+            
+            const totalAmount = dataList.reduce((sum, item) => sum + Number(item.price), 0);
+            document.getElementById('statTotalAmount').innerText = totalAmount.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            const pendingCount = dataList.filter(item => item.status === 'รอตรวจสอบ').length;
+            document.getElementById('statPendingItems').innerText = pendingCount;
+        }
+
+        // ฟังก์ชันประมวลผล ค้นหา, กรอง และแสดงตารางข้อมูล
+        function renderTable() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase().trim();
+            const selectedCategory = document.getElementById('filterCategory').value;
+            
+            tableBody.innerHTML = '';
+
+            // กรองข้อมูลตามคำค้นหาและหมวดหมู่ที่เลือก
+            const filteredData = dataList.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery);
+                const matchesCategory = (selectedCategory === 'ทั้งหมด') || (item.category === selectedCategory);
+                return matchesSearch && matchesCategory;
+            });
+
+            // แสดงแจ้งเตือนกรณีตารางว่างเปล่า
+            if (filteredData.length === 0) {
+                noDataMessage.classList.remove('hidden');
+            } else {
+                noDataMessage.classList.add('hidden');
+                
+                filteredData.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-slate-50/70 transition duration-100';
+
+                    // กำหนดสีกราฟิกป้ายสถานะ
+                    const statusStyle = item.status === 'อนุมัติแล้ว' 
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60' 
+                        : 'bg-amber-50 text-amber-700 border-amber-200/60';
+
+                    row.innerHTML = `
+                        <td class="py-4 px-5 text-center text-slate-400 font-medium">${index + 1}</td>
+                        <td class="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">${item.date}</td>
+                        <td class="py-4 px-5 font-semibold text-slate-800">${item.name}</td>
+                        <td class="py-4 px-5 text-xs text-slate-500">${item.category}</td>
+                        <td class="py-4 px-5 text-right font-mono font-medium text-slate-900">${Number(item.price).toLocaleString('th-TH', {minimumFractionDigits: 2})}</td>
+                        <td class="py-4 px-5 text-center">
+                            <span class="px-2 py-0.5 text-xs font-medium rounded-md border ${statusStyle}">
+                                ${item.status}
+                            </span>
+                        </td>
+                        <td class="py-4 px-5 text-center">
+                            <button onclick="deleteItem('${item.id}')" class="text-red-500 hover:text-white hover:bg-red-500 border border-transparent hover:border-red-600 px-2 py-1 rounded-lg text-xs transition duration-150">
+                                🗑️ ลบ
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // รีเฟรชสถิติภาพรวมและเซฟลงความจำ
+            updateDashboardStats();
+            localStorage.setItem('advancedTableData', JSON.stringify(dataList));
+        }
+
+        // จัดการส่งฟอร์มเพื่อบันทึกข้อมูล
+        dataForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('itemName').value;
+            const category = document.getElementById('itemCategory').value;
+            const price = document.getElementById('itemPrice').value;
+            const status = document.querySelector('input[name="itemStatus"]:checked').value;
+            
+            // สแตมป์วันที่ปัจจุบันแบบไทยสไตล์ (ว/ด/ป)
+            const now = new Date();
+            const dateString = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+
+            // โครงสร้างวัตถุข้อมูลชิ้นใหม่ (มี id เฉพาะเพื่อความปลอดภัยในการลบข้อมูลที่ชื่อซ้ำกัน)
+            const newItem = {
+                id: Date.now().toString(),
+                name: name,
+                category: category,
+                price: price,
+                status: status,
+                date: dateString
+            };
+
+            dataList.unshift(newItem); // เพิ่มข้อมูลใหม่ไว้บนสุดของตารางเพื่อให้สังเกตง่าย
+            dataForm.reset(); // เคลียร์ฟอร์มให้พร้อมกรอกตัวถัดไป
+            renderTable(); // สั่งวาดข้อมูลลงตารางใหม่
+        });
+
+        // ฟังก์ชันลบรายการข้อมูลตาม ID
+        function deleteItem(id) {
+            if (confirm('คุณต้องการลบข้อมูลรายการนี้ใช่หรือไม่? ข้อมูลจะถูกถอนออกถาวร')) {
+                dataList = dataList.filter(item => item.id !== id);
+                renderTable();
+            }
+        }
+
+        // สั่งทำงานฟังก์ชันเริ่มต้นแสดงผลเมื่อเปิดเว็บหน้าแรก
+        renderTable();
+    </script>
+</body>
+</html>
