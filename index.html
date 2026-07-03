@@ -6,7 +6,7 @@
     <title>ระบบบริหารจัดการบุคลากรระดับองค์กร - ProfileVerse Enterprise v4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght=300;400;500;600;700&display=swap');
         body {
             font-family: 'Prompt', sans-serif;
         }
@@ -24,7 +24,7 @@
         }
     </style>
 </head>
-<body class="bg-purple-50 text-slate-800 min-h-screen flex flex-col antialiased">
+<body class="bg-gradient-to-br from-[#eae4f9] to-[#fdede2] text-slate-800 min-h-screen flex flex-col antialiased">
 
     <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-sm border-b border-slate-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -49,54 +49,54 @@
     <main class="container mx-auto px-6 py-8 flex-grow space-y-8">
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col justify-between">
+            <div class="bg-[#e0f2fe] p-6 rounded-2xl border border-[#bae6fd] shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
                     <div>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">บุคลากรทั้งหมด</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">บุคลากรทั้งหมด</p>
                         <h3 id="statTotalPeople" class="text-2xl font-bold text-slate-900 mt-1">0 คน</h3>
                     </div>
-                    <div class="bg-purple-50 text-purple-600 p-3.5 rounded-xl text-xl">👥</div>
+                    <div class="bg-sky-50 text-sky-600 p-3.5 rounded-xl text-xl">👥</div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-emerald-600 font-medium flex items-center">
+                <div class="mt-4 pt-3 border-t border-sky-200/60 text-xs text-emerald-700 font-medium flex items-center">
                     🟢 ปฏิบัติงานปกติ: <span id="statActivePct" class="font-bold ml-1">0%</span>
                 </div>
             </div>
             
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col justify-between">
+            <div class="bg-[#e0f2fe] p-6 rounded-2xl border border-[#bae6fd] shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
                     <div>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">งบประมาณเงินเดือนรวม</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">งบประมาณเงินเดือนรวม</p>
                         <h3 id="statTotalSalary" class="text-2xl font-bold text-slate-900 mt-1">0.00 บาท</h3>
                     </div>
                     <div class="bg-emerald-50 text-emerald-600 p-3.5 rounded-xl text-xl">💰</div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium flex justify-between">
-                    <span>เฉลี่ย/คน:</span> <span id="statAvgSalary" class="font-bold text-emerald-600">0 บาท</span>
+                <div class="mt-4 pt-3 border-t border-sky-200/60 text-xs text-slate-600 font-medium flex justify-between">
+                    <span>เฉลี่ย/คน:</span> <span id="statAvgSalary" class="font-bold text-emerald-700">0 บาท</span>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col justify-between">
+            <div class="bg-[#e0f2fe] p-6 rounded-2xl border border-[#bae6fd] shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
                     <div>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">เกณฑ์อายุเฉลี่ย</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">เกณฑ์อายุเฉลี่ย</p>
                         <h3 id="statAverageAge" class="text-2xl font-bold text-slate-900 mt-1">0.0 ปี</h3>
                     </div>
                     <div class="bg-violet-50 text-violet-600 p-3.5 rounded-xl text-xl">📊</div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 font-medium">
+                <div class="mt-4 pt-3 border-t border-sky-200/60 text-xs text-slate-500 font-medium">
                     อ้างอิงจากเกณฑ์อายุ 18 - 70 ปี
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm flex flex-col justify-between">
+            <div class="bg-[#e0f2fe] p-6 rounded-2xl border border-[#bae6fd] shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between w-full">
                     <div>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">ระงับสถานะ / พ้นสภาพ</p>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">ระงับสถานะ / พ้นสภาพ</p>
                         <h3 id="statSuspended" class="text-2xl font-bold text-rose-600 mt-1">0 คน</h3>
                     </div>
                     <div class="bg-rose-50 text-rose-600 p-3.5 rounded-xl text-xl">🚫</div>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-rose-600 font-medium flex items-center">
+                <div class="mt-4 pt-3 border-t border-sky-200/60 text-xs text-rose-700 font-medium flex items-center">
                     ⚠️ คิดเป็นอัตราส่วน: <span id="statSuspendedPct" class="font-bold ml-1">0%</span>
                 </div>
             </div>
@@ -104,8 +104,8 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             
-            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 lg:sticky lg:top-28">
-                <h2 id="formTitle" class="text-base font-bold text-slate-900 mb-5 flex items-center border-b border-slate-100 pb-3">
+            <div class="bg-[#e0f2fe] rounded-2xl border border-[#bae6fd] shadow-sm p-6 lg:sticky lg:top-28">
+                <h2 id="formTitle" class="text-base font-bold text-slate-900 mb-5 flex items-center border-b border-sky-200/60 pb-3">
                     <span class="mr-2.5 text-purple-500">📥</span> เพิ่มประวัติพนักงานใหม่
                 </h2>
                 
@@ -113,14 +113,14 @@
                     <input type="hidden" id="editItemId">
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>ชื่อ - นามสกุล</b></label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>ชื่อ - นามสกุล</b></label>
                         <input type="text" id="personName" required placeholder="เช่น นายสมศักดิ์ มั่นคง" 
-                            class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm">
+                            class="w-full px-3.5 py-2 bg-white/80 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>แผนก / ตำแหน่งงาน</b></label>
-                        <select id="personRole" class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm bg-white">
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>แผนก / ตำแหน่งงาน</b></label>
+                        <select id="personRole" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm bg-white/80">
                             <optgroup label="ฝ่ายบริหาร (Management)">
                                 <option value="ผู้บริหารระดับสูง (Executive / CEO)">ผู้บริหารระดับสูง (Executive / CEO)</option>
                                 <option value="ผู้จัดการฝ่าย / แผนก (Manager)">ผู้จัดการฝ่าย / แผนก (Manager)</option>
@@ -140,42 +140,42 @@
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>เบอร์โทรศัพท์</b></label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>เบอร์โทรศัพท์</b></label>
                             <input type="tel" id="personPhone" placeholder="เช่น 081-234-5678" 
-                                class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
+                                class="w-full px-3.5 py-2 bg-white/80 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>อีเมล</b></label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>อีเมล</b></label>
                             <input type="email" id="personEmail" placeholder="เช่น somsak@company.com" 
-                                class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
+                                class="w-full px-3.5 py-2 bg-white/80 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>อายุ (ปี)</b></label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>อายุ (ปี)</b></label>
                             <input type="number" id="personAge" required min="18" max="70" placeholder="เช่น 25" 
-                                class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
+                                class="w-full px-3.5 py-2 bg-white/80 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>เงินเดือน (บาท)</b></label>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>เงินเดือน (บาท)</b></label>
                             <input type="number" id="personSalary" required min="0" placeholder="เช่น 35000" 
-                                class="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
+                                class="w-full px-3.5 py-2 bg-white/80 border border-slate-200 rounded-xl focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 outline-none transition text-sm font-mono">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5"><b>สถานะพนักงาน</b></label>
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5"><b>สถานะพนักงาน</b></label>
                         <div class="grid grid-cols-2 gap-3 mt-1">
                             <label class="relative block cursor-pointer">
                                 <input type="radio" name="personStatus" value="เปิดใช้งาน" checked class="status-radio sr-only">
-                                <div class="status-card border border-slate-200 text-slate-600 rounded-xl p-2.5 text-center text-xs font-semibold transition duration-200 bg-slate-50 hover:bg-slate-100">
+                                <div class="status-card border border-slate-200 text-slate-600 rounded-xl p-2.5 text-center text-xs font-semibold transition duration-200 bg-white/90 hover:bg-white">
                                     🟢 ปฏิบัติงานปกติ
                                 </div>
                             </label>
                             <label class="relative block cursor-pointer">
                                 <input type="radio" name="personStatus" value="ระงับใช้งาน" class="status-radio status-radio-danger sr-only">
-                                <div class="status-card border border-slate-200 text-slate-600 rounded-xl p-2.5 text-center text-xs font-semibold transition duration-200 bg-slate-50 hover:bg-slate-100">
+                                <div class="status-card border border-slate-200 text-slate-600 rounded-xl p-2.5 text-center text-xs font-semibold transition duration-200 bg-white/90 hover:bg-white">
                                     🔴 ระงับ / พ้นสภาพ
                                 </div>
                             </label>
@@ -195,11 +195,11 @@
 
             <div class="lg:col-span-2 space-y-4">
                 
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row gap-3 justify-between items-center">
+                <div class="bg-[#e0f2fe] p-4 rounded-2xl border border-[#bae6fd] shadow-sm flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div class="relative w-full md:w-72">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-sm">🔍</span>
                         <input type="text" id="searchBar" oninput="renderTable()" placeholder="พิมพ์ค้นหาชื่อ หรือตำแหน่งงาน..." 
-                            class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition">
+                            class="w-full pl-9 pr-4 py-2 bg-white/80 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:ring-4 focus:ring-purple-500/10 focus:border-purple-500 transition">
                     </div>
                     
                     <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
@@ -219,11 +219,11 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="bg-[#e0f2fe] rounded-2xl border border-[#bae6fd] shadow-sm overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-50 text-slate-500 text-[11px] font-bold uppercase tracking-wider border-b border-slate-200/60">
+                                <tr class="bg-sky-100/80 text-slate-600 text-[11px] font-bold uppercase tracking-wider border-b border-sky-200">
                                     <th class="py-4 px-4 text-center w-14">ลำดับ</th>
                                     <th class="py-4 px-4">บุคลากร & ข้อมูลติดต่อ</th>
                                     <th class="py-4 px-4">ตำแหน่งงาน</th>
@@ -233,7 +233,7 @@
                                     <th class="py-4 px-4 text-center w-36">การจัดการ</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <tbody id="tableBody" class="divide-y divide-sky-100 text-sm text-slate-700">
                             </tbody>
                         </table>
                     </div>
@@ -248,7 +248,7 @@
         </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400 font-medium mt-auto">
+    <footer class="bg-white/60 border-t border-slate-200/60 py-4 text-center text-xs text-slate-500 font-medium mt-auto">
         <p>© 2026 ProfileVerse Enterprise Directory. All rights reserved.</p>
     </footer>
 
@@ -327,7 +327,7 @@
                 
                 filteredData.forEach((p, index) => {
                     const row = document.createElement('tr');
-                    row.className = 'odd:bg-white even:bg-slate-50/40 hover:bg-purple-50/40 transition-colors duration-150 group';
+                    row.className = 'odd:bg-white even:bg-sky-50/20 hover:bg-purple-50/40 transition-colors duration-150 group';
 
                     const statusBadge = p.status === 'เปิดใช้งาน' 
                         ? '<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/10">● ทำงานปกติ</span>' 
