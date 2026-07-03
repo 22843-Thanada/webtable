@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard ระบบจัดการข้อมูลตารางอัปเกรด</title>
+    <title>ระบบจัดการข้อมูลส่วนบุคคล - ProfileVerse</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
@@ -17,17 +17,17 @@
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="bg-emerald-600 text-white p-2 rounded-xl shadow-md shadow-emerald-200">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md shadow-indigo-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-slate-900 tracking-tight">DataVerse</h1>
-                    <p class="text-xs text-slate-500">ระบบบันทึกและวิเคราะห์ข้อมูลตาราง</p>
+                    <h1 class="text-xl font-bold text-slate-900 tracking-tight">ProfileVerse</h1>
+                    <p class="text-xs text-slate-500">ระบบบริหารและจัดการข้อมูลบุคคลส่วนกลาง</p>
                 </div>
             </div>
-            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200">อัปเดตล่าสุด: 2026</span>
+            <span class="text-xs bg-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-lg border border-slate-200">ปีงบประมาณ: 2026</span>
         </div>
     </header>
 
@@ -36,24 +36,24 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-slate-500">รายการทั้งหมด</p>
-                    <h3 id="statTotalItems" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
+                    <p class="text-sm font-medium text-slate-500">จำนวนบุคคลทั้งหมด</p>
+                    <h3 id="statTotalPeople" class="text-3xl font-bold text-slate-900 mt-1">0 คน</h3>
                 </div>
-                <div class="bg-blue-50 text-blue-600 p-3 rounded-xl text-xl">📊</div>
+                <div class="bg-indigo-50 text-indigo-600 p-3 rounded-xl text-xl">👥</div>
             </div>
             <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-slate-500">มูลค่ารวมเงิน (บาท)</p>
-                    <h3 id="statTotalAmount" class="text-3xl font-bold text-emerald-600 mt-1">0.00</h3>
+                    <p class="text-sm font-medium text-slate-500">อายุเฉลี่ย (ปี)</p>
+                    <h3 id="statAverageAge" class="text-3xl font-bold text-emerald-600 mt-1">0.0</h3>
                 </div>
-                <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xl">💰</div>
+                <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl text-xl">📊</div>
             </div>
             <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-slate-500">รายการรอตรวจสอบ</p>
-                    <h3 id="statPendingItems" class="text-3xl font-bold text-amber-600 mt-1">0</h3>
+                    <p class="text-sm font-medium text-slate-500">ถูกระงับใช้งาน</p>
+                    <h3 id="statSuspended" class="text-3xl font-bold text-rose-600 mt-1">0 คน</h3>
                 </div>
-                <div class="bg-amber-50 text-amber-600 p-3 rounded-xl text-xl">⏳</div>
+                <div class="bg-rose-50 text-rose-600 p-3 rounded-xl text-xl">🚫</div>
             </div>
         </div>
 
@@ -61,48 +61,48 @@
             
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 lg:sticky lg:top-24">
                 <h2 class="text-base font-bold text-slate-900 mb-4 flex items-center border-b border-slate-100 pb-3">
-                    <span class="mr-2">📥</span> กรอกข้อมูลเข้าตาราง
+                    <span class="mr-2">👤</span> ลงทะเบียนข้อมูลบุคคล
                 </h2>
                 
-                <form id="dataForm" class="space-y-4">
+                <form id="personForm" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">ชื่อรายการ / ข้อมูล</label>
-                        <input type="text" id="itemName" required placeholder="เช่น ซื้อลิขสิทธิ์ซอฟต์แวร์, ไอแพดเพื่อการศึกษา" 
-                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm">
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">ชื่อ - นามสกุล</label>
+                        <input type="text" id="personName" required placeholder="เช่น นายสมชาย ใจดี" 
+                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition text-sm">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">หมวดหมู่</label>
-                        <select id="itemCategory" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm bg-white">
-                            <option value="ครุภัณฑ์/อุปกรณ์">ครุภัณฑ์/อุปกรณ์</option>
-                            <option value="ค่าใช้จ่ายสำนักงาน">ค่าใช้จ่ายสำนักงาน</option>
-                            <option value="งานบริการ/ซอฟต์แวร์">งานบริการ/ซอฟต์แวร์</option>
-                            <option value="อื่นๆ">อื่นๆ</option>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">ประเภท / บทบาท</label>
+                        <select id="personRole" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition text-sm bg-white">
+                            <option value="พนักงาน">พนักงาน (Employee)</option>
+                            <option value="ลูกค้า">ลูกค้า (Customer)</option>
+                            <option value="สมาชิก">สมาชิก (Member)</option>
+                            <option value="ผู้ติดต่อทั่วไป">ผู้ติดต่อทั่วไป (Visitor)</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">จำนวนเงิน (บาท)</label>
-                        <input type="number" id="itemPrice" required min="0" step="0.01" placeholder="0.00" 
-                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none transition text-sm">
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">อายุ (ปี)</label>
+                        <input type="number" id="personAge" required min="1" max="120" placeholder="ตัวเลขเท่านั้น เช่น 28" 
+                            class="w-full px-3.5 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition text-sm">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">สถานะตรวจสอบ</label>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">สถานะบุคคล</label>
                         <div class="grid grid-cols-2 gap-3 mt-1">
                             <label class="flex items-center justify-center border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-slate-50 transition text-sm font-medium text-slate-700">
-                                <input type="radio" name="itemStatus" value="อนุมัติแล้ว" checked class="text-emerald-600 focus:ring-emerald-500 h-4 w-4 mr-2">
-                                อนุมัติแล้ว
+                                <input type="radio" name="personStatus" value="เปิดใช้งาน" checked class="text-indigo-600 focus:ring-indigo-500 h-4 w-4 mr-2">
+                                เปิดใช้งาน
                             </label>
                             <label class="flex items-center justify-center border border-slate-200 rounded-xl p-2.5 cursor-pointer hover:bg-slate-50 transition text-sm font-medium text-slate-700">
-                                <input type="radio" name="itemStatus" value="รอตรวจสอบ" class="text-amber-600 focus:ring-amber-500 h-4 w-4 mr-2">
-                                รอตรวจสอบ
+                                <input type="radio" name="personStatus" value="ระงับใช้งาน" class="text-rose-600 focus:ring-rose-500 h-4 w-4 mr-2">
+                                ระงับใช้งาน
                             </label>
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 rounded-xl transition duration-200 shadow-sm flex justify-center items-center text-sm mt-2">
-                        ➕ บันทึกข้อมูลเข้าตาราง
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-xl transition duration-200 shadow-sm flex justify-center items-center text-sm mt-2">
+                        ➕ บันทึกข้อมูลลงรายชื่อ
                     </button>
                 </form>
             </div>
@@ -112,17 +112,17 @@
                 <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-3 justify-between items-center">
                     <div class="relative w-full sm:w-72">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 text-sm">🔍</span>
-                        <input type="text" id="searchBar" oninput="renderTable()" placeholder="พิมพ์ค้นหาชื่อรายการ..." 
-                            class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition">
+                        <input type="text" id="searchBar" oninput="renderTable()" placeholder="พิมพ์ค้นหาชื่อ-นามสกุล..." 
+                            class="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition">
                     </div>
                     <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
-                        <span class="text-xs font-semibold text-slate-500 whitespace-nowrap">ตัวกรอง:</span>
-                        <select id="filterCategory" onchange="renderTable()" class="px-3 py-2 border border-slate-300 rounded-xl text-sm outline-none bg-white text-slate-700 focus:border-emerald-500 min-w-[140px]">
-                            <option value="ทั้งหมด">ทั้งหมดทุกหมวด</option>
-                            <option value="ครุภัณฑ์/อุปกรณ์">ครุภัณฑ์/อุปกรณ์</option>
-                            <option value="ค่าใช้จ่ายสำนักงาน">ค่าใช้จ่ายสำนักงาน</option>
-                            <option value="งานบริการ/ซอฟต์แวร์">งานบริการ/ซอฟต์แวร์</option>
-                            <option value="อื่นๆ">อื่นๆ</option>
+                        <span class="text-xs font-semibold text-slate-500 whitespace-nowrap">ตัวกรองบทบาท:</span>
+                        <select id="filterRole" onchange="renderTable()" class="px-3 py-2 border border-slate-300 rounded-xl text-sm outline-none bg-white text-slate-700 focus:border-indigo-500 min-w-[140px]">
+                            <option value="ทั้งหมด">ทั้งหมดทุกประเภท</option>
+                            <option value="พนักงาน">พนักงาน</option>
+                            <option value="ลูกค้า">ลูกค้า</option>
+                            <option value="สมาชิก">สมาชิก</option>
+                            <option value="ผู้ติดต่อทั่วไป">ผู้ติดต่อทั่วไป</option>
                         </select>
                     </div>
                 </div>
@@ -133,10 +133,10 @@
                             <thead>
                                 <tr class="bg-slate-50 text-slate-500 text-xs font-semibold uppercase tracking-wider border-b border-slate-200/60">
                                     <th class="py-3.5 px-5 text-center">ลำดับ</th>
-                                    <th class="py-3.5 px-5">วันที่บันทึก</th>
-                                    <th class="py-3.5 px-5">ชื่อรายการ</th>
-                                    <th class="py-3.5 px-5">หมวดหมู่</th>
-                                    <th class="py-3.5 px-5 text-right">จำนวนเงิน</th>
+                                    <th class="py-3.5 px-5">วันที่ลงทะเบียน</th>
+                                    <th class="py-3.5 px-5">ชื่อ - นามสกุล</th>
+                                    <th class="py-3.5 px-5">ประเภท/บทบาท</th>
+                                    <th class="py-3.5 px-5 text-center">อายุ (ปี)</th>
                                     <th class="py-3.5 px-5 text-center">สถานะ</th>
                                     <th class="py-3.5 px-5 text-center">จัดการ</th>
                                 </tr>
@@ -147,8 +147,8 @@
                     </div>
 
                     <div id="noDataMessage" class="py-16 text-center text-slate-400 hidden">
-                        <span class="text-4xl block mb-2">📥</span>
-                        <p class="text-sm font-medium">ไม่พบข้อมูลที่ตรงกับเงื่อนไขการค้นหา</p>
+                        <span class="text-4xl block mb-2">👥</span>
+                        <p class="text-sm font-medium">ไม่พบข้อมูลรายชื่อบุคคลที่ตรงกับเงื่อนไข</p>
                     </div>
                 </div>
 
@@ -157,71 +157,77 @@
     </main>
 
     <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
-        <p>© 2026 DataVerse Pro Table Storage. All rights reserved.</p>
+        <p>© 2026 ProfileVerse Personal Data Directory. All rights reserved.</p>
     </footer>
 
     <script>
-        // โหลดข้อมูลเก่าจากฐานข้อมูลเบราว์เซอร์ (Local Storage)
-        let dataList = JSON.parse(localStorage.getItem('advancedTableData')) || [];
+        // โหลดข้อมูลรายชื่อบุคคลจาก Local Storage
+        let peopleList = JSON.parse(localStorage.getItem('personalDataDirectory')) || [];
 
-        const dataForm = document.getElementById('dataForm');
+        const personForm = document.getElementById('personForm');
         const tableBody = document.getElementById('tableBody');
         const noDataMessage = document.getElementById('noDataMessage');
 
-        // ฟังก์ชันคำนวณสรุปสถิติด้านบน (คำนวณจากข้อมูลทั้งหมดเสมอเพื่อสะท้อนภาพรวม)
+        // ฟังก์ชันคำนวณสรุปสถิติด้านบนของแดชบอร์ด
         function updateDashboardStats() {
-            document.getElementById('statTotalItems').innerText = dataList.length;
+            document.getElementById('statTotalPeople').innerText = `${peopleList.length} คน`;
             
-            const totalAmount = dataList.reduce((sum, item) => sum + Number(item.price), 0);
-            document.getElementById('statTotalAmount').innerText = totalAmount.toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            // คำนวณอายุเฉลี่ย
+            if (peopleList.length === 0) {
+                document.getElementById('statAverageAge').innerText = "0.0";
+            } else {
+                const totalAge = peopleList.reduce((sum, person) => sum + Number(person.age), 0);
+                const avgAge = totalAge / peopleList.length;
+                document.getElementById('statAverageAge').innerText = avgAge.toFixed(1);
+            }
             
-            const pendingCount = dataList.filter(item => item.status === 'รอตรวจสอบ').length;
-            document.getElementById('statPendingItems').innerText = pendingCount;
+            // นับจำนวนคนที่ถูกระงับใช้งาน
+            const suspendedCount = peopleList.filter(person => person.status === 'ระงับใช้งาน').length;
+            document.getElementById('statSuspended').innerText = `${suspendedCount} คน`;
         }
 
-        // ฟังก์ชันประมวลผล ค้นหา, กรอง และแสดงตารางข้อมูล
+        // ฟังก์ชันเรนเดอร์ตาราง แสดงผล ค้นหา และกรองข้อมูล
         function renderTable() {
             const searchQuery = document.getElementById('searchBar').value.toLowerCase().trim();
-            const selectedCategory = document.getElementById('filterCategory').value;
+            const selectedRole = document.getElementById('filterRole').value;
             
             tableBody.innerHTML = '';
 
-            // กรองข้อมูลตามคำค้นหาและหมวดหมู่ที่เลือก
-            const filteredData = dataList.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(searchQuery);
-                const matchesCategory = (selectedCategory === 'ทั้งหมด') || (item.category === selectedCategory);
-                return matchesSearch && matchesCategory;
+            // ทำการกรองข้อมูลแบบ Real-time
+            const filteredData = peopleList.filter(person => {
+                const matchesSearch = person.name.toLowerCase().includes(searchQuery);
+                const matchesRole = (selectedRole === 'ทั้งหมด') || (person.role === selectedRole);
+                return matchesSearch && matchesRole;
             });
 
-            // แสดงแจ้งเตือนกรณีตารางว่างเปล่า
             if (filteredData.length === 0) {
                 noDataMessage.classList.remove('hidden');
             } else {
                 noDataMessage.classList.add('hidden');
                 
-                filteredData.forEach((item, index) => {
+                filteredData.forEach((person, index) => {
                     const row = document.createElement('tr');
                     row.className = 'hover:bg-slate-50/70 transition duration-100';
 
-                    // กำหนดสีกราฟิกป้ายสถานะ
-                    const statusStyle = item.status === 'อนุมัติแล้ว' 
+                    // กำหนดสีของ Badge สถานะบุคคล
+                    const statusStyle = person.status === 'เปิดใช้งาน' 
                         ? 'bg-emerald-50 text-emerald-700 border-emerald-200/60' 
-                        : 'bg-amber-50 text-amber-700 border-amber-200/60';
+                        : 'bg-rose-50 text-rose-700 border-rose-200/60';
 
                     row.innerHTML = `
                         <td class="py-4 px-5 text-center text-slate-400 font-medium">${index + 1}</td>
-                        <td class="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">${item.date}</td>
-                        <td class="py-4 px-5 font-semibold text-slate-800">${item.name}</td>
-                        <td class="py-4 px-5 text-xs text-slate-500">${item.category}</td>
-                        <td class="py-4 px-5 text-right font-mono font-medium text-slate-900">${Number(item.price).toLocaleString('th-TH', {minimumFractionDigits: 2})}</td>
+                        <td class="py-4 px-5 text-xs text-slate-500 whitespace-nowrap">${person.date}</td>
+                        <td class="py-4 px-5 font-semibold text-slate-800">${person.name}</td>
+                        <td class="py-4 px-5 text-xs text-slate-600 font-medium">${person.role}</td>
+                        <td class="py-4 px-5 text-center font-mono text-slate-900">${person.age}</td>
                         <td class="py-4 px-5 text-center">
-                            <span class="px-2 py-0.5 text-xs font-medium rounded-md border ${statusStyle}">
-                                ${item.status}
+                            <span class="px-2.5 py-0.5 text-xs font-medium rounded-full border ${statusStyle}">
+                                ${person.status}
                             </span>
                         </td>
                         <td class="py-4 px-5 text-center">
-                            <button onclick="deleteItem('${item.id}')" class="text-red-500 hover:text-white hover:bg-red-500 border border-transparent hover:border-red-600 px-2 py-1 rounded-lg text-xs transition duration-150">
-                                🗑️ ลบ
+                            <button onclick="deletePerson('${person.id}')" class="text-rose-500 hover:text-white hover:bg-rose-500 border border-transparent hover:border-rose-600 px-2.5 py-1 rounded-lg text-xs transition duration-150">
+                                🗑️ ลบรายชื่อ
                             </button>
                         </td>
                     `;
@@ -229,48 +235,47 @@
                 });
             }
 
-            // รีเฟรชสถิติภาพรวมและเซฟลงความจำ
+            // อัปเดตสถิติและเซฟลงถังข้อมูลเบราว์เซอร์
             updateDashboardStats();
-            localStorage.setItem('advancedTableData', JSON.stringify(dataList));
+            localStorage.setItem('personalDataDirectory', JSON.stringify(peopleList));
         }
 
-        // จัดการส่งฟอร์มเพื่อบันทึกข้อมูล
-        dataForm.addEventListener('submit', function(e) {
+        // จับเหตุการณ์ตอนคลิกปุ่มบันทึกข้อมูลบุคคล
+        personForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('itemName').value;
-            const category = document.getElementById('itemCategory').value;
-            const price = document.getElementById('itemPrice').value;
-            const status = document.querySelector('input[name="itemStatus"]:checked').value;
+            const name = document.getElementById('personName').value;
+            const role = document.getElementById('personRole').value;
+            const age = document.getElementById('personAge').value;
+            const status = document.querySelector('input[name="personStatus"]:checked').value;
             
-            // สแตมป์วันที่ปัจจุบันแบบไทยสไตล์ (ว/ด/ป)
+            // บันทึกวันเวลาปัจจุบันสไตล์ไทย (ว/ด/ป)
             const now = new Date();
             const dateString = now.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
 
-            // โครงสร้างวัตถุข้อมูลชิ้นใหม่ (มี id เฉพาะเพื่อความปลอดภัยในการลบข้อมูลที่ชื่อซ้ำกัน)
-            const newItem = {
-                id: Date.now().toString(),
+            const newPerson = {
+                id: Date.now().toString(), // ใช้ timestamp สร้างไอดีที่ไม่ซ้ำกัน
                 name: name,
-                category: category,
-                price: price,
+                role: role,
+                age: age,
                 status: status,
                 date: dateString
             };
 
-            dataList.unshift(newItem); // เพิ่มข้อมูลใหม่ไว้บนสุดของตารางเพื่อให้สังเกตง่าย
-            dataForm.reset(); // เคลียร์ฟอร์มให้พร้อมกรอกตัวถัดไป
-            renderTable(); // สั่งวาดข้อมูลลงตารางใหม่
+            peopleList.unshift(newPerson); // นำรายชื่อใหม่ไปต่อไว้บนสุดเพื่อให้เห็นง่าย
+            personForm.reset(); // ล้างฟิลด์ข้อมูลให้ว่าง
+            renderTable(); // วาดตารางใหม่
         });
 
-        // ฟังก์ชันลบรายการข้อมูลตาม ID
-        function deleteItem(id) {
-            if (confirm('คุณต้องการลบข้อมูลรายการนี้ใช่หรือไม่? ข้อมูลจะถูกถอนออกถาวร')) {
-                dataList = dataList.filter(item => item.id !== id);
+        // ฟังก์ชันลบรายชื่อบุคคลออกจากฐานข้อมูล
+        function deletePerson(id) {
+            if (confirm('คุณต้องการลบข้อมูลบุคคลท่านนี้ใช่หรือไม่? (การลบจะลบข้อมูลออกถาวรจากเบราว์เซอร์ของคุณ)')) {
+                peopleList = peopleList.filter(person => person.id !== id);
                 renderTable();
             }
         }
 
-        // สั่งทำงานฟังก์ชันเริ่มต้นแสดงผลเมื่อเปิดเว็บหน้าแรก
+        // สั่งให้ระบบทำงานเมื่อเริ่มโหลดหน้าเว็บครั้งแรก
         renderTable();
     </script>
 </body>
